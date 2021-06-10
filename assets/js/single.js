@@ -5,8 +5,12 @@ var repoNameEl = document.querySelector("#repo-name");
 var getRepoName = function(){
     var queryString = document.location.search;
     var repoName = queryString.split('=')[1];
+    if(repoName){
     getRepoIssues(repoName);
     repoNameEl.textContent = repoName;
+    } else {
+        document.location.replace('./index.html');
+    }
 }
 
 var getRepoIssues = function (repo) {
@@ -22,7 +26,7 @@ var getRepoIssues = function (repo) {
                 }
             });
         } else {
-            alert('there was a problem with your request');
+            document.location.replace('./index.html');
         }
     });
 };
